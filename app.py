@@ -35,5 +35,27 @@ def emotion():
     return render_template('emotion.html')
 
 
+@app.route('/gender/predict', methods=['GET', 'POST'])
+def gender_predict():
+    '''
+    predict function to predict the image
+    Api hits this function when someone clicks submit.
+    '''
+    if request.method == 'POST':
+        return jsonify(result="Gender")
+    return None
+
+
+@app.route('/emotion/predict', methods=['GET', 'POST'])
+def emotion_predict():
+    '''
+    predict function to predict the image
+    Api hits this function when someone clicks submit.
+    '''
+    if request.method == 'POST':
+        return jsonify(result="Emotion")
+    return None
+
+
 if __name__ == '__main__':
     app.run(debug=True)

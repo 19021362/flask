@@ -2,12 +2,12 @@
 // Drag and drop audio handling
 //========================================================================
 
-var genderFileSelect = document.getElementById("genderInputFile");
-var emotionFileSelect = document.getElementById("emotionInputFile");
+var FileSelect = document.getElementById("InputFile");
+console.log(FileSelect);
+
 
 // Add event listeners
-genderFileSelect.addEventListener("change", fileSelectHandler, false);
-emotionFileSelect.addEventListener("change", fileSelectHandler, false);
+FileSelect.addEventListener("change", fileSelectHandler, false);
 
 function fileDragHover(e) {
     // prevent default behaviour
@@ -31,7 +31,6 @@ function fileSelectHandler(e) {
 
 var audioPreview = document.getElementById("audio-preview");
 var audioDisplay = document.getElementById("audio-display");
-var uploadCaption = document.getElementById("upload-caption");
 var predResult = document.getElementById("pred-result");
 var loader = document.getElementById("loader");
 
@@ -41,7 +40,7 @@ var loader = document.getElementById("loader");
 
 function genderSubmitAudio() {
     // action for the submit button
-    console.log("gender submit");
+    console.log(audioDisplay.src);
 
     if (!audioDisplay.src || !audioDisplay.src.startsWith("data")) {
         window.alert("Please select an audio before submit.");
@@ -57,7 +56,7 @@ function genderSubmitAudio() {
 
 function emotionSubmitAudio() {
     // action for the submit button
-    console.log("emotion submit");
+    console.log(audioDisplay.src);
 
     if (!audioDisplay.src || !audioDisplay.src.startsWith("data")) {
         window.alert("Please select an audio before submit.");
@@ -71,7 +70,6 @@ function emotionSubmitAudio() {
     emotionPredictAudio(audioDisplay.src);
 }
 
-
 function previewFile(file) {
     // show the preview of the audio
     console.log(file.name);
@@ -83,7 +81,6 @@ function previewFile(file) {
         audioPreview.src = URL.createObjectURL(file);
 
         show(audioPreview);
-        hide(uploadCaption);
 
         // reset
         predResult.innerHTML = "";
@@ -93,12 +90,13 @@ function previewFile(file) {
     };
 }
 
+
 //========================================================================
 // Helper functions
 //========================================================================
 
 function genderPredictAudio(audio) {
-    fetch("/predict", {
+    fetch("/gender/predict", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -118,7 +116,7 @@ function genderPredictAudio(audio) {
 }
 
 function emotionPredictAudio(audio) {
-    fetch("/predict", {
+    fetch("/emotion/predict", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
