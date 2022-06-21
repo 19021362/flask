@@ -1,0 +1,16 @@
+{% extends "index.html" %} {% block gender %}
+
+<div class="container-fluid">
+    <div class="mx-auto pt-5" style="width: 800px;">
+        <h1 class="text-center">Classify audio by gender</h1>
+        <div class="input-group pt-5">
+            <input type="file" class="form-control" id="genderInputFile" aria-describedby="inputGroupFileAddon04"
+                aria-label="Upload" accept="audio/*">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon01"
+                onclick="genderSubmitAudio();">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

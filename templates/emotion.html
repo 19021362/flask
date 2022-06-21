@@ -1,0 +1,16 @@
+{% extends "index.html" %} {% block emotion %}
+
+<div class="container-fluid">
+    <div class="mx-auto pt-5" style="width: 800px;">
+        <h1 class="text-center">Classify audio by emotion</h1>
+        <div class="input-group pt-5">
+            <input type="file" class="form-control" id="emotionInputFile" aria-describedby="inputGroupFileAddon04"
+                aria-label="Upload" accept="audio/*">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon02"
+                onclick="emotionSubmitAudio();">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
