@@ -32,7 +32,6 @@ function fileSelectHandler(e) {
 var audioPreview = document.getElementById("audio-preview");
 var audioDisplay = document.getElementById("audio-display");
 var predResult = document.getElementById("pred-result");
-var loader = document.getElementById("loader");
 
 //========================================================================
 // Main button events
@@ -47,7 +46,6 @@ function genderSubmitAudio() {
         return;
     }
 
-    loader.classList.remove("hidden");
     audioDisplay.classList.add("loading");
 
     // call the predict function of the backend
@@ -63,7 +61,6 @@ function emotionSubmitAudio() {
         return;
     }
 
-    loader.classList.remove("hidden");
     audioDisplay.classList.add("loading");
 
     // call the predict function of the backend
@@ -96,6 +93,7 @@ function previewFile(file) {
 //========================================================================
 
 function genderPredictAudio(audio) {
+    console.log(audio)
     fetch("/gender/predict", {
         method: "POST",
         headers: {
@@ -106,6 +104,7 @@ function genderPredictAudio(audio) {
         .then(resp => {
             if (resp.ok)
                 resp.json().then(data => {
+                    console.log(data);
                     displayResult(data);
                 });
         })
@@ -145,7 +144,6 @@ function displayAudio(audio, id) {
 function displayResult(data) {
     // display the result
     // audioDisplay.classList.remove("loading");
-    hide(loader);
     predResult.innerHTML = data.result;
     show(predResult);
 }

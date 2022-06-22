@@ -42,6 +42,7 @@ def gender_predict():
     Api hits this function when someone clicks submit.
     '''
     if request.method == 'POST':
+        data = request.get_json()
         return jsonify(result="Gender")
     return None
 
@@ -53,6 +54,7 @@ def emotion_predict():
     Api hits this function when someone clicks submit.
     '''
     if request.method == 'POST':
+        data = request.get_json()
         return jsonify(result="Emotion")
     return None
 
